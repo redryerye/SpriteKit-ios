@@ -14,7 +14,11 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    let pinchGesture = UIPinchGestureRecognizer()
+    var testImage = SKSpriteNode()
+    
     override func didMove(to view: SKView) {
+        print(#function)
         
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
@@ -35,6 +39,22 @@ class GameScene: SKScene {
                                               SKAction.fadeOut(withDuration: 0.5),
                                               SKAction.removeFromParent()]))
         }
+        
+        testImage = SKSpriteNode(imageNamed: "courbet")
+        addChild(testImage)
+        
+        pinchGesture.addTarget(self, action: #selector(self.handlePinchFrom(_:)))
+        self.view?.addGestureRecognizer(pinchGesture)
+        
+    }
+    
+    @objc func handlePinchFrom(_ sender: UIPinchGestureRecognizer) {
+        
+        let pinch = SKAction.scale(by: sender.scale, duration: 0.0)
+        
+        self.testImage.run(pinch)
+        sender.scale = 1.0
+        
     }
     
     
