@@ -24,7 +24,7 @@ class GameScene: SKScene {
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
         if let label = self.label {
             label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+//            label.run(SKAction.fadeIn(withDuration: 2.0))
         }
         
         // Create shape node to use during mouse interaction
@@ -40,7 +40,7 @@ class GameScene: SKScene {
                                               SKAction.removeFromParent()]))
         }
         
-        testImage = SKSpriteNode(imageNamed: "courbet")
+        testImage = SKSpriteNode(imageNamed: "sisley_4k")
         addChild(testImage)
         
         pinchGesture.addTarget(self, action: #selector(self.handlePinchFrom(_:)))
@@ -84,7 +84,8 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+            // Shrink and go back
+//            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
         }
         
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
